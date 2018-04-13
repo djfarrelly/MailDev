@@ -1,0 +1,54 @@
+# This file is commonly accessed via passdb {} or userdb {} section in
+# conf.d/auth-dict.conf.ext
+
+# Dictionary URI
+#uri = 
+
+# Default password scheme
+default_pass_scheme = MD5
+
+# Username iteration prefix. Keys under this are assumed to contain usernames.
+iterate_prefix = userdb/
+
+# Should iteration be disabled for this userdb? If this userdb acts only as a
+# cache there's no reason to try to iterate the (partial & duplicate) users.
+#iterate_disable = no
+
+# The example here shows how to do multiple dict lookups and merge the replies.
+# The "passdb" and "userdb" keys are JSON objects containing key/value pairs,
+# for example: { "uid": 1000, "gid": 1000, "home": "/home/user" }
+
+key passdb {
+  key = passdb/%u
+  format = json
+}
+key userdb {
+  key = userdb/%u
+  format = json
+}
+key quota {
+  key = userdb/%u/quota
+  #format = value
+  # The default_value is used if the key isn't found. If default_value setting
+  # isn't specified at all (even as empty), the passdb/userdb lookup fails with
+  # "user doesn't exist".
+  default_value = 100M
+}
+
+# Space separated list of keys whose values contain key/value paired objects.
+# All the key/value pairs inside the object are added as passdb fields.
+passdb_objects = passdb
+
+#passdb_fields {
+#}
+
+# Userdb key/value object list.
+userdb_objects = userdb
+
+userdb_fields {
+  # dict:<key> refers to key names
+  quota_rule = *:storage=%{dict:quota}
+
+  # dict:<key>.<objkey> refers to the objkey inside (JSON) object
+  mail = maildir:%{dict:userdb.home}/Maildir
+}

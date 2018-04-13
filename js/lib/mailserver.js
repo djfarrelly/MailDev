@@ -18,7 +18,7 @@ const outgoing = require('./outgoing')
 const defaultPort = 1025
 const defaultHost = '0.0.0.0'
 const store = []
-const tempDir = path.join(os.tmpdir(), 'maildev', process.pid.toString())
+const tempDir = path.join(os.tmpdir(), 'maildev'); //, process.pid.toString())
 const eventEmitter = new events.EventEmitter()
 
 /**

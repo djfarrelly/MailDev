@@ -5,7 +5,7 @@
 [![NPM Version](https://img.shields.io/npm/v/maildev.svg)](https://www.npmjs.com/package/maildev)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-**MailDev** is a simple way to test your project's generated emails during development with an easy to use web interface that runs on your machine built on top of [Node.js](http://www.nodejs.org).
+**MailDev** is a simple way to test your project's generated emails during development with an easy to use web interface that runs on your machine built on top of [Node.js](http://www.nodejs.org). It also contains a [POP3](https://en.wikipedia.org/wiki/POP3) and [IMAP](https://en.wikipedia.org/wiki/IMAP) server, thanks to [dovecot](https://www.dovecot.org/).
 
 ![MailDev Screenshot](https://github.com/djfarrelly/MailDev/blob/gh-pages/images/screenshot-2015-03-29.png?raw=true)
 
@@ -84,6 +84,19 @@ to a real SMTP service that will *actually* send the email to the recipient.
               --outgoing-secure \
               --outgoing-user 'you@gmail.com' \
               --outgoing-pass '<pass>'
+
+## IMAP and POP
+
+To use IMAP and/or POP3, just point your prefered to Mail Client to
+
+- host: `localhost`
+- user: `node`
+- password: `password`
+- port:
+  - 110 (POP3)
+  - 143 (IMAP)
+
+Make sure you disable any kind of encryption
 
 ### Auto relay mode
 
@@ -206,6 +219,7 @@ To run the test suite:
 and [mailparser](https://github.com/nodemailer/mailparser).
 Many thanks to Andris as his projects are the backbone of this app and to
 [MailCatcher](http://mailcatcher.me/) for the inspiration.
+[dovecot](https://www.dovecot.org/) for the [POP3](https://en.wikipedia.org/wiki/POP3) and [IMAP](https://en.wikipedia.org/wiki/IMAP) support
 
 Additionally, thanks to all the awesome [contributors](https://github.com/djfarrelly/MailDev/graphs/contributors)
 to the project.

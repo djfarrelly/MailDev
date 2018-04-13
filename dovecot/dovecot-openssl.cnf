@@ -1,0 +1,31 @@
+[ req ]
+default_bits = 1024
+encrypt_key = yes
+distinguished_name = req_dn
+x509_extensions = cert_type
+prompt = no
+
+[ req_dn ]
+# country (2 letter code)
+#C=FI
+
+# State or Province Name (full name)
+#ST=
+
+# Locality Name (eg. city)
+#L=Helsinki
+
+# Organization (eg. company)
+#O=Dovecot
+
+# Organizational Unit Name (eg. section)
+OU=IMAP server
+
+# Common Name (*.example.com is also possible)
+CN=imap.example.com
+
+# E-mail contact
+emailAddress=postmaster@example.com
+
+[ cert_type ]
+nsCertType = server

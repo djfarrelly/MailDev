@@ -5,11 +5,21 @@ node_modules
 scripts
 test
 
+js/assets
+js/coverage
+js/docs
+js/node_modules
+js/scripts
+js/test
+
 .*
 
 # Only add .min.js dependencies
 app/components/**/*.js*
+js/app/components/**/*.js*
 !app/components/**/*.min.js
+!js/app/components/**/*.min.js
 
 Dockerfile
 rules.json
+js/rules.json
