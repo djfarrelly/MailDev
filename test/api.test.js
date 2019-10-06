@@ -134,4 +134,66 @@ describe('API', function () {
       })
     })
   })
+
+  describe('Group', function () {
+    it('should manage group header', function (done) {
+      const maildev = new MailDev({
+        silent: true,
+        disableWeb: true
+      })
+
+      const emailOpts = {
+        from: 'Angelo Pappas <angelo.pappas@fbi.gov>',
+        to: 'Johnny Utah <johnny.utah@fbi.gov>',
+        headers: { 'x-maildev-group': 'group01' },
+        subject: 'You were right.',
+        text: 'They are surfers, but they are in a group.\n'
+      }
+
+      maildev.listen(function (err) {
+        if (err) return done(err)
+
+        const transporter = nodemailer.createTransport({
+          port: 1025,
+          ignoreTLS: true
+        })
+
+        transporter.sendMail(emailOpts, function (err, info) {
+          if (err) return done(err)
+
+          // To ensure this passes consistently, we need a delay
+          setTimeout(function () {
+            maildev.getAllGroup(function (err, groups) {
+              if (err) return done(err)
+              assert.strictEqual(Array.isArray(groups), true)
+              assert.strictEqual(groups.length, 2)
+              assert.strictEqual(groups[1], emailOpts.headers['x-maildev-group'])
+
+              maildev.getAllEmailByGroup(groups[1], function (err, emails) {
+                if (err) return done(err)
+                assert.strictEqual(Array.isArray(emails), true)
+                assert.strictEqual(emails.length, 1)
+                assert.strictEqual(emails[0].text, emailOpts.text)
+
+                maildev.deleteEmailByGroup(groups[1], function (err, emails) {
+                  if (err) return done(err)
+
+                  maildev.getAllGroup(function (err, groups) {
+                    if (err) return done(err)
+                    assert.strictEqual(Array.isArray(groups), true)
+                    assert.strictEqual(groups.length, 1)
+
+                    maildev.close(function () {
+                      done()
+                      transporter.close()
+                    })
+                  })
+                })
+              })
+            })
+          }, 10)
+        })
+      })
+    })
+  })
 })
