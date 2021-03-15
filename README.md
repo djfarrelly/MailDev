@@ -5,7 +5,7 @@
 [![NPM Version](https://img.shields.io/npm/v/maildev.svg)](https://www.npmjs.com/package/maildev)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-**MailDev** is a simple way to test your project's generated emails during development with an easy to use web interface that runs on your machine built on top of [Node.js](http://www.nodejs.org).
+**MailDev** is a simple way to test your project's generated email during development, with an easy to use web interface that runs on your machine built on top of [Node.js](http://www.nodejs.org).
 
 ![MailDev Screenshot](https://github.com/maildev/maildev/blob/gh-pages/images/screenshot-2021-01-03.png?raw=true)
 
@@ -30,22 +30,22 @@ Usage: maildev [options]
 
 |Options|Environment variable|Description|
 |---|---|---|
-|`-s, --smtp <port>`|`MAILDEV_SMTP_PORT`|SMTP port to catch emails|
+|`-s, --smtp <port>`|`MAILDEV_SMTP_PORT`|SMTP port to catch email|
 |`-w, --web <port>`|`MAILDEV_WEB_PORT`|Port to run the Web GUI|
 |`--mail-directory <path>`|`MAILDEV_MAIL_DIRECTORY`|Directory for persisting mails|
 |`--https`|`MAILDEV_HTTPS`|Switch from http to https protocol|
 |`--https-key <file>`|`MAILDEV_HTTPS_KEY`|The file path to the ssl private key|
 |`--https-cert <file>`|`MAILDEV_HTTPS_CERT`|The file path to the ssl cert file|
 |`--ip <ip address>`|`MAILDEV_IP`|IP Address to bind SMTP service to|
-|`--outgoing-host <host>`|`MAILDEV_OUTGOING_HOST`|SMTP host for outgoing emails|
-|`--outgoing-port <port>`|`MAILDEV_OUTGOING_PORT`|SMTP port for outgoing emails|
-|`--outgoing-user <user>`|`MAILDEV_OUTGOING_USER`|SMTP user for outgoing emails|
-|`--outgoing-pass <password>`|`MAILDEV_OUTGOING_PASS`|SMTP password for outgoing emails|
-|`--outgoing-secure`|`MAILDEV_OUTGOING_SECURE`|Use SMTP SSL for outgoing emails|
+|`--outgoing-host <host>`|`MAILDEV_OUTGOING_HOST`|SMTP host for outgoing mail|
+|`--outgoing-port <port>`|`MAILDEV_OUTGOING_PORT`|SMTP port for outgoing mail|
+|`--outgoing-user <user>`|`MAILDEV_OUTGOING_USER`|SMTP user for outgoing mail|
+|`--outgoing-pass <password>`|`MAILDEV_OUTGOING_PASS`|SMTP password for outgoing mail|
+|`--outgoing-secure`|`MAILDEV_OUTGOING_SECURE`|Use SMTP SSL for outgoing mail|
 |`--auto-relay [email]`|`MAILDEV_AUTO_RELAY`|Use auto-relay mode. Optional relay email address|
 |`--auto-relay-rules <file>`|`MAILDEV_AUTO_RELAY_RULES`|Filter rules for auto relay mode|
-|`--incoming-user <user>`|`MAILDEV_INCOMING_USER`|SMTP user for incoming emails|
-|`--incoming-pass <pass>`|`MAILDEV_INCOMING_PASS`|SMTP password for incoming emails|
+|`--incoming-user <user>`|`MAILDEV_INCOMING_USER`|SMTP user for incoming mail|
+|`--incoming-pass <pass>`|`MAILDEV_INCOMING_PASS`|SMTP password for incoming mail|
 |`--web-ip <ip address>`|`MAILDEV_WEB_IP`|IP Address to bind HTTP service to, defaults to --ip|
 |`--web-user <user>`|`MAILDEV_WEB_USER`|HTTP user for GUI|
 |`--web-pass <password>`|`MAILDEV_WEB_PASS`|HTTP password for GUI|
