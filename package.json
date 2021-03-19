@@ -43,6 +43,7 @@
   "license": "MIT",
   "dependencies": {
     "async": "^3.1.0",
+    "cheerio": "^1.0.0-rc.5",
     "commander": "^2.20.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -51,8 +52,7 @@
     "rimraf": "^3.0.2",
     "smtp-connection": "4.0.2",
     "smtp-server": "3.5.0",
-    "socket.io": "2.2.0",
-    "strip-tags": "^0.1.1",
+    "socket.io": "^2.4.1",
     "wildstring": "1.0.9"
   },
   "devDependencies": {
@@ -63,7 +63,7 @@
     "node-sass": "^4.13.1",
     "nodemailer": "^6.4.2",
     "nodemon": "^2.0.2",
-    "nyc": "^14.1.1",
+    "nyc": "^15.1.0",
     "standard": "^12.0.1"
   },
   "engines": {

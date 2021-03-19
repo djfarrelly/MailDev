@@ -100,7 +100,7 @@ describe('middleware', function () {
         .then(function (res) {
           assert.strictEqual(
             res.body,
-            `<img src="//localhost:8080/maildev/email/${email.id}/attachment/tyler.jpg">`
+            `<html><head></head><body><img src="//localhost:8080/maildev/email/${email.id}/attachment/tyler.jpg"></body></html>`
           )
           maildev.removeAllListeners()
           done()

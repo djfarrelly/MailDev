@@ -93,11 +93,11 @@ describe('email', function () {
       // Simple replacement to root url
       maildev.getEmailHTML(email.id, function (_, html) {
         const attachmentFilename = (email.subject.endsWith('#1')) ? 'tyler.jpg' : 'wave.jpg'
-        assert.strictEqual(html, '<img src="/email/' + email.id + '/attachment/' + attachmentFilename + '">')
+        assert.strictEqual(html, '<html><head></head><body><img src="/email/' + email.id + '/attachment/' + attachmentFilename + '"></body></html>')
 
         // Pass baseUrl
         maildev.getEmailHTML(email.id, 'localhost:8080', function (_, html) {
-          assert.strictEqual(html, '<img src="//localhost:8080/email/' + email.id + '/attachment/' + attachmentFilename + '">')
+          assert.strictEqual(html, '<html><head></head><body><img src="//localhost:8080/email/' + email.id + '/attachment/' + attachmentFilename + '"></body></html>')
 
           // Check contents of attached/embedded files
           http.get('http://localhost:1080/email/' + email.id + '/attachment/' + attachmentFilename, function (res) {
