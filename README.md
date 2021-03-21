@@ -1,3 +1,3 @@
 # MailDev
 
-The maildev githib.io page.
+The MailDev github.io page.

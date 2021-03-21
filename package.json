@@ -1,0 +1,21 @@
+{
+  "name": "maildev-gh-pages",
+  "version": "2.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --kill-others --names \"server ,postcss\" \"http-server -o\" \"postcss src/global.css --verbose --watch --env development --dir assets/style\"",
+    "build": "postcss src/global.css --env production --dir assets/style"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.4.0",
+    "concurrently": "6.0.0",
+    "cssnano": "4.1.10",
+    "http-server": "0.12.3",
+    "postcss": "8.2.8",
+    "postcss-cli": "8.3.1",
+    "postcss-import": "14.0.0",
+    "postcss-preset-env": "6.7.0",
+    "tailwindcss": "2.0.3"
+  }
+}

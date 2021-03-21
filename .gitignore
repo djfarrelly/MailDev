@@ -1,6 +1,4 @@
+.env
 .DS_Store
-.sass-cache
-.tmp
+npm-debug.log
 node_modules
-*.sublime-*
-.nodemonignore

@@ -1,0 +1,48 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  font-size: 16px;
+}
+
+.prose a {
+  font-weight: inherit;
+}
+
+.prose strong {
+  color: inherit;
+}
+
+.prose h1,
+.prose h2 {
+  border-bottom-width: 1px;
+  padding-bottom: 0.25rem;
+}
+
+.prose code {
+  color: #374151;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-weight: 400;
+  background: rgba(243, 244, 246, 1);
+}
+
+.prose code::before,
+.prose code::after {
+  content: "";
+}
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .prose table {
+    display: table;
+    overflow-x: visible;
+    white-space: normal;
+  }
+}
