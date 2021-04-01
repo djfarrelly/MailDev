@@ -14,4 +14,20 @@ describe('utils', () => {
       expect(utils.makeId()).toMatch(alphaNumericRegex)
     })
   })
+
+  describe('filterEmails', () => {
+    const emails = [
+      { subject: 'Test', headers: { 'x-some-header': 1 } },
+      { subject: 'Test' },
+      { subject: 'Test2' }
+    ]
+
+    it('should filter by differect predicates', () => {
+      expect(utils.filterEmails(emails, { subject: 'Test' }).length).toEqual(2)
+      expect(utils.filterEmails(emails, { subject: 'Test2' }).length).toEqual(1)
+      expect(utils.filterEmails(emails, { 'headers.x-some-header': 1 }).length).toEqual(1)
+      expect(utils.filterEmails(emails, { subject: 'Test', 'headers.x-some-header': 1 }).length).toEqual(1)
+      expect(utils.filterEmails(emails, { subject: 'Test', 'headers.x-some-header': 0 }).length).toEqual(0)
+    })
+  })
 })

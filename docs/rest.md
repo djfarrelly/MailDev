@@ -81,9 +81,19 @@ Returns:
 
 **GET    /email/:id/attachment/:filename** - Get a given email's file attachment.
 
-**POST   /email/:id/relay** - If configured, relay a given email to it's real 
+**POST   /email/:id/relay** - If configured, relay a given email to it's real
 "to" address.
 
 **GET    /config** - Get the application configuration.
 
 **GET    /healthz** - Health check
+
+## Filtering
+
+The **GET    /email** endpoint does allow simple filtering. Every field content of the returned payload can be used to only return desired emails. Nested objects can be defined by using a dot syntax (`headers.to=value`).
+
+For example:
+
+```GET email?subject="Big wave coming" # only emails with the exact subject```
+
+```GET email?headers.some-header="some-value"&subject=test # only emails with the exact subject and header value```
