@@ -115,6 +115,11 @@
                         <input type="text" ng-model="search" class="search-input" placeholder="Search...">
                         <i class="fas fa-search search-icon"></i>
                     </div>
+                    <div class="group-container ng-cloak">
+                        <label>Group:</label>
+                        <select ng-model="group" class="groups-input" ng-options="group.id for group in groups track by group.id">
+                        </select>
+                    </div>
                     <div class="sidebar-scrollable-content ng-cloak">
 
                         <div ng-if="itemsLoading" class="emails-loading">

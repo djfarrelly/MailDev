@@ -11,6 +11,13 @@ app.service('Email', ['$resource', function ($resource) {
       params: {}
     }
   })
+}]).service('Group', ['$resource', function ($resource) {
+  return $resource('group/:id', { id: '' }, {
+    get: {
+      method: 'GET',
+      isArray: true
+    }
+  })
 }]).service('Favicon', [function () {
   const favicon = document.getElementById('favicon')
   const canvas = document.createElement('canvas')

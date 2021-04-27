@@ -433,13 +433,67 @@ body.dark-theme {
 
 }
 
+.group-container {
+  position: relative;
+  height: 2.2em;
 
+  &:after {
+    content: "▼";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 60%;
+    line-height: 30px;
+    color: #555;
+    pointer-events: none;
+    padding: 2px 5px;
+  }
 
+  label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    line-height: 30px;
+    padding-left: 0.5em;
+    color: rgba(black, .6);
 
+    body.dark-theme & {
+      background-color: darken($brand, 38);
+      color: rgba(white, .6);
+    }
+  }
 
+  select {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    line-height: 1.2;
+    outline: none; /* remove focus ring from Webkit */
+    -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5em 0.8em 0.5em 2.4em;
+    width: 21em;
+    border-color: transparent;
+    color: rgba(black, .95);
 
+    body.dark-theme & {
+      background-color: darken($brand, 38);
+      color: rgba(white, .95);
+    }
 
-
+    &:focus {
+    }
+  }
+}
 
 .emails-loading,
 .emails-empty {

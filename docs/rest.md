@@ -84,6 +84,12 @@ Returns:
 **POST   /email/:id/relay** - If configured, relay a given email to it's real 
 "to" address.
 
+**GET    /group** - Get all groups, by default, if an email doesn't have the `x-maildev-group` header, then it's group is `default`
+
+**GET    /group/:group** - Get all emails by group
+
+**DELETE /group/:group** - Delete all emails by group
+
 **GET    /config** - Get the application configuration.
 
 **GET    /healthz** - Health check
