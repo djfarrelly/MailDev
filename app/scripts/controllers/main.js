@@ -7,12 +7,14 @@ var refreshTimeout = null
 var notificationTimeout = null
 
 app.controller('MainCtrl', [
-  '$scope', '$rootScope', '$http', 'Email', '$route', '$location', 'Favicon',
-  function ($scope, $rootScope, $http, Email, $route, $location, Favicon) {
+  '$scope', '$rootScope', '$http', 'Email', 'Group', '$route', '$location', 'Favicon',
+  function ($scope, $rootScope, $http, Email, Group, $route, $location, Favicon) {
     $scope.notificationsSupported = 'Notification' in window && window.isSecureContext
 
     $scope.itemsLoading = true
     $scope.items = []
+    $scope.groups = []
+    $scope.group = { id: 'default' }
     $scope.currentItemId = null
     $scope.unreadItems = 0
     $scope.navMoreOpen = false
@@ -49,20 +51,27 @@ app.controller('MainCtrl', [
       }).length
       Favicon.setUnreadCount($scope.unreadItems)
     }
+    const isGroupUndefined = function () {
+      return $scope.group.id === 'default'
+    }
 
     // Load all emails
     var loadData = function () {
       $scope.itemsLoading = true
-      $scope.items = Email.query(function () {
-        $scope.itemsLoading = false
-      })
+      $scope.items = isGroupUndefined() ? Email.query() : Group.get({ id: $scope.group.id })
       $scope.items.$promise.then(function () {
+        $scope.itemsLoading = false
         countUnread()
       })
     }
 
+    var loadGroups = function () {
+      $scope.groups = Group.query()
+    }
+
     $rootScope.$on('Refresh', function (e, d) {
       loadData()
+      loadGroups()
     })
 
     $rootScope.$on('$routeChangeSuccess', function (e, route) {
@@ -74,6 +83,7 @@ app.controller('MainCtrl', [
     $rootScope.$on('newMail', function (e, newEmail) {
       // update model
       $scope.items.push(newEmail)
+      loadGroups()
       countUnread()
 
       // update DOM at most 5 times per second
@@ -139,6 +149,10 @@ app.controller('MainCtrl', [
 
       countUnread()
     }
+
+    $scope.$watch('group', function (val, oldVal) {
+      loadData()
+    }, false)
 
     $scope.$watch('currentItemId', function (val, oldVal) {
       $scope.markCurrentAsRead()
@@ -208,6 +222,10 @@ app.controller('MainCtrl', [
       }
       clearTimeout(t)
       $scope.deleteAllSafeguard = true
+      if (!isGroupUndefined()) {
+        Group.delete($scope.group)
+        return
+      }
       Email.delete({ id: 'all' })
     }
 
@@ -235,6 +253,7 @@ app.controller('MainCtrl', [
 
     // Initialize the view
     loadData()
+    loadGroups()
 
     $http({ method: 'GET', url: 'config' })
       .success(function (data) {
