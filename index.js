@@ -94,6 +94,13 @@ module.exports = function (config) {
     mailserver.on('close', web.close)
   }
 
+  if (config.logMailContents) {
+    mailserver.on('new', function (mail) {
+      const mailContents = JSON.stringify(mail, null, 2)
+      logger.info(`Received the following mail contents:\n${mailContents}`)
+    })
+  }
+
   function shutdown () {
     logger.info(`Received shutdown signal, shutting down now...`)
     async.parallel([
